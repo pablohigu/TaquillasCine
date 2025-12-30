@@ -1,11 +1,11 @@
 package entregaPSP.Cine;
 
 public class Cliente {
-private String id;
-public Cliente(String id) {
-	this.id = id;
+private int id;
+public Cliente(int idCliente) {
+	this.id = idCliente;
 }
-public String getId() {
+public int getId() {
 	return id;
 }
 }

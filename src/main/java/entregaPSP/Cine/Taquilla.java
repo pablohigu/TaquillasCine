@@ -9,8 +9,8 @@ public class Taquilla extends Thread{
 	    public Taquilla(String nombre, Cine cine, int tiempoMinSegundos, int tiempoMaxSegundos) {
 	        this.nombre = nombre;
 	        this.cine = cine;
-	        this.tiempoMinVenta = tiempoMinSegundos * 1000;
-	        this.tiempoMaxVenta = tiempoMaxSegundos * 1000;
+	        this.tiempoMinVenta = tiempoMinSegundos;
+	        this.tiempoMaxVenta = tiempoMaxSegundos ;
 	    }
 
 	    @Override

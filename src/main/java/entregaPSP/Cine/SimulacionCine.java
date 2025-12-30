@@ -2,8 +2,6 @@ package entregaPSP.Cine;
 
 public class SimulacionCine {
 
-	public class SimulacionCine {
-
 	    public static void main(String[] args) {
 	        
 	        // --- 1. CONFIGURACIÓN DE LA SIMULACIÓN ---
@@ -47,28 +45,25 @@ public class SimulacionCine {
 	        
 	        int idCliente = 1; // Contador para dar IDs únicos
 	        
-	        // Bucle que simula los 30 minutos
+	        
 	        for (int minuto = 1; minuto <= MINUTOS_ANTES_PELICULA; minuto++) {
-	            
-	            // Verificamos si ya no quedan asientos antes de seguir generando gente
+	           
 	            if (!cine.hayAsientosLibres()) {
 	                System.out.println("¡SOLD OUT! Se acabaron las entradas en el minuto " + minuto);
 	                break;
 	            }
 
 	            System.out.println("\n--- MINUTO " + minuto + " ---");
-	            
-	            // Generamos clientes aleatorios (entre 10 y 15)
+	         
 	            int numNuevosClientes = (int) (Math.random() * (LLEGADA_MAX_CLIENTES - LLEGADA_MIN_CLIENTES + 1) + LLEGADA_MIN_CLIENTES);
 	            
 	            System.out.println(">>> Llegan " + numNuevosClientes + " personas a la cola.");
-	            
-	            // Metemos a los clientes en la cola (Productor)
+	      
 	            for (int i = 0; i < numNuevosClientes; i++) {
 	                cine.entrarCine(new Cliente(idCliente++));
 	            }
 	            
-	            // Esperamos 1 segundo real (que equivale a 1 minuto simulado)
+	         
 	            try {
 	                Thread.sleep(1000);
 	            } catch (InterruptedException e) {
@@ -76,12 +71,9 @@ public class SimulacionCine {
 	            }
 	        }
 	        
-	        // --- 4. CIERRE Y RESULTADOS ---
-	        
-	        // Se acabó el tiempo o las entradas -> Cerramos el cine
 	        cine.cerrarCine();
 	        
-	        // Esperamos a que las taquillas terminen lo que tengan entre manos (join)
+	        
 	        try {
 	            t1.join();
 	            t2.join();
@@ -103,3 +95,4 @@ public class SimulacionCine {
 	        }
 	    }
 	}
+
