@@ -1,48 +1,57 @@
 package entregaPSP.Cine;
 
-public class Taquilla extends Thread{
-	    private String nombre; 
-	    private Cine cine;    
-	    private int tiempoMinVenta; 
-	    private int tiempoMaxVenta;
+public class Taquilla extends Thread {
+    private String nombre;
+    private Cine cine;
+    private int tiempoMinVenta;
+    private int tiempoMaxVenta;
 
-	    public Taquilla(String nombre, Cine cine, int tiempoMinSegundos, int tiempoMaxSegundos) {
-	        this.nombre = nombre;
-	        this.cine = cine;
-	        this.tiempoMinVenta = tiempoMinSegundos;
-	        this.tiempoMaxVenta = tiempoMaxSegundos ;
-	    }
+    public Taquilla(String nombre, Cine cine, int tiempoMinVenta, int tiempoMaxVenta) {
+        
+        this.nombre = nombre;
+        this.cine = cine;
+        this.tiempoMinVenta = tiempoMinVenta;
+        this.tiempoMaxVenta = tiempoMaxVenta;
+    }
 
-	    @Override
-	    public void run() {
-	        System.out.println( this.nombre + " ABIERTA y lista para vender.");
+    @Override
+    public void run() {
+        System.out.println(this.nombre + " ABIERTA.");
 
-	        while (true) {
-	          
-	            Cliente cliente = cine.venderEntrada();
-	            if (cliente == null) {
-	                break;
-	            }
+        while (cine.estaAbierto() || cine.hayClientesEsperando()) {
+            
+            if (!cine.hayAsientosLibres()) {
+                break;
+            }
 
-	            try {
-	               
-	                long tiempoProceso = (long) (Math.random() * (tiempoMaxVenta - tiempoMinVenta + 1) + tiempoMinVenta);
-	                
-	                System.out.println(this.nombre + " atendiendo al Cliente " + cliente.getId() + 
-	                                   " (" + (tiempoProceso/1000) + "s simulados)...");
-	                
-	               
-	                Thread.sleep(tiempoProceso);
-	                
-	                System.out.println(this.nombre + " ha vendido entrada al Cliente " + cliente.getId());
+          
+            int totalColas = cine.getNumeroColas();
+            int colaElegida = (int) (Math.random() * totalColas);
 
-	            } catch (InterruptedException e) {
-	               
-	                System.out.println("⚠️ " + this.nombre + " interrumpida.");
-	                break;
-	            }
-	        }
+            
+            Cliente cliente = cine.despacharCliente(colaElegida);
 
-	        System.out.println( this.nombre + " CERRADA.");
-	    }
-	}
+            if (cliente != null) {
+               
+                try {
+                    System.out.println("Procesando: " + this.nombre + " atiende a Cliente " 
+                                       + cliente.getId() + " de la COLA " + (colaElegida + 1));
+                    
+                    long tiempo = (long) (Math.random() * (tiempoMaxVenta - tiempoMinVenta + 1) + tiempoMinVenta);
+                    Thread.sleep(tiempo);
+                    
+                    System.out.println("💰 " + this.nombre + " vendió entrada a Cliente " + cliente.getId());
+                    
+                } catch (InterruptedException e) {
+                    break;
+                }
+            } else {
+              
+                try {
+                    Thread.sleep(100); 
+                } catch (InterruptedException e) {}
+            }
+        }
+        System.out.println(this.nombre + " CERRADA.");
+    }
+}

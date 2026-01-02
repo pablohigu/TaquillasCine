@@ -22,7 +22,7 @@ public class SimulacionCine {
 
         Taquilla[] taquillas = new Taquilla[NUM_TAQUILLAS];
         for (int i = 0; i < NUM_TAQUILLAS; i++) {
-            taquillas[i] = new Taquilla("Taquilla " + (i + 1), cine, TIEMPO_VENTA_MIN, TIEMPO_MAX);
+            taquillas[i] = new Taquilla("Taquilla " + (i + 1), cine, TIEMPO_VENTA_MIN, TIEMPO_VENTA_MAX);
             taquillas[i].start();
         }
         
