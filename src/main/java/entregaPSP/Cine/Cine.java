@@ -42,7 +42,7 @@ public class Cine {
         }
         
        
-        System.out.println("❌ Cliente " + cliente.getId() + " se marcha: TODAS LAS COLAS LLENAS.");
+        System.out.println("Cliente " + cliente.getId() + " se marcha: TODAS LAS COLAS LLENAS.");
         return false;
     }
 

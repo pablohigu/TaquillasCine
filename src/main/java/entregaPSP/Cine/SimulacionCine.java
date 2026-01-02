@@ -15,7 +15,7 @@ public class SimulacionCine {
         int TIEMPO_VENTA_MIN = 1000;
         int TIEMPO_VENTA_MAX = 2000;
         
-        System.out.println("--- INICIO SIMULACIÓN V2 (Multicolas) ---");
+        System.out.println("--- INICIO  ---");
         System.out.println("Config: " + NUM_COLAS + " colas de max " + MAX_PERSONAS_COLA + " personas.");
         
         Cine cine = new Cine(AFORO_TOTAL, NUM_COLAS, MAX_PERSONAS_COLA);
