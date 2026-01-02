@@ -53,5 +53,8 @@ public class SimulacionCine {
         
         System.out.println("\n--- ESTADÍSTICAS FINALES ---");
         System.out.println("Entradas vendidas: " + cine.getEntradasVendidas());
+        int totalClientesGenerados = idCliente - 1;
+        int clientesSinEntrada = totalClientesGenerados - cine.getEntradasVendidas();
+        System.out.println("Se quedaron sin entrada: " + clientesSinEntrada);
     }
 }

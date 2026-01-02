@@ -40,7 +40,7 @@ public class Taquilla extends Thread {
                     long tiempo = (long) (Math.random() * (tiempoMaxVenta - tiempoMinVenta + 1) + tiempoMinVenta);
                     Thread.sleep(tiempo);
                     
-                    System.out.println("💰 " + this.nombre + " vendió entrada a Cliente " + cliente.getId());
+                    System.out.println( this.nombre + " vendió entrada a Cliente " + cliente.getId());
                     
                 } catch (InterruptedException e) {
                     break;
